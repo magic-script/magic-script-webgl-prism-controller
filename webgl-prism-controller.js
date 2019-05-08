@@ -1,4 +1,4 @@
-import { LandscapeApp } from 'lumin';
+import { PrismController } from 'lumin';
 import egl from 'egl';
 import gl from 'gl';
 import png from 'png';
@@ -25,16 +25,17 @@ gl.getParameter = pname => {
 let cb;
 globalThis.requestAnimationFrame = fn => { cb = fn; };
 
-export class WebGlApp extends LandscapeApp {
-  init () {
-    let prism = this.requestNewPrism([0.5, 0.5, 0.2]);
-    let root = prism.getRootNode();
+export class WebGlController extends PrismController {
+  onAttachPrism () {
+    let prism = this.getPrism();
+    let root = this.getRoot();
 
     // create planar resource
     let id = prism.createPlanarEGLResourceId(1024, 1024);
     let quad = prism.createQuadNode(id);
-    quad.setLocalScale([0.5, 0.5, 0.5]);
-    quad.setLocalPosition([-0.25, -0.25, -0.1]);
+    let [w, h] = prism.getSize();
+    quad.setLocalScale([w, h, 1]);
+    quad.setLocalPosition([-w / 2, -h / 2, 0]);
     quad.setBackFaceCulls(false);
     quad.setIsOpaque(false);
     root.addChild(quad);
@@ -51,7 +52,7 @@ export class WebGlApp extends LandscapeApp {
     if (window.onload) { window.onload(); }
     return 0;
   }
-  updateLoop () {
+  onUpdate () {
     if (this.cb) {
       gl.clear(gl.COLOR_BUFFER_BIT);
       let fn = this.cb;
@@ -173,3 +174,8 @@ class WebVRManager {
 }
 
 globalThis.WebVRManager = WebVRManager;
+
+export default function (code) {
+  code();
+  return new WebGlApp(0.5);
+}

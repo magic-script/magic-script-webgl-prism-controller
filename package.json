@@ -1,8 +1,11 @@
 {
-  "name": "magic-script-webgl-landscape-app",
-  "version": "1.0.0",
-  "description": "A simple landscape app containing a webgl quad",
-  "main": "webgl-app.js",
+  "name": "webgl-prism-controller",
+  "version": "1.1.0",
+  "description": "Prism controller containing a webgl enabled quad",
+  "module": "webgl-prism-controller.js",
   "author": "Magic Leap",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "magic-script-polyfills": "^2.0.2"
+  }
 }
