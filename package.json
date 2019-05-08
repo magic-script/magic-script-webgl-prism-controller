@@ -1,0 +1,8 @@
+{
+  "name": "magic-script-webgl-landscape-app",
+  "version": "1.0.0",
+  "description": "A simple landscape app containing a webgl quad",
+  "main": "webgl-app.js",
+  "author": "Magic Leap",
+  "license": "Apache-2.0"
+}
