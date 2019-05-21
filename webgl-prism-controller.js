@@ -100,6 +100,7 @@ let body = {
 globalThis.window = globalThis;
 window.innerWidth = width;
 window.innerHeight = height;
+window.devicePixelRatio = 1;
 
 globalThis.document = {
   __proto__: DomNode,
@@ -174,8 +175,3 @@ class WebVRManager {
 }
 
 globalThis.WebVRManager = WebVRManager;
-
-export default function (code) {
-  code();
-  return new WebGlApp(0.5);
-}
