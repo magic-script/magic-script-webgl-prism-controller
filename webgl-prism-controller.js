@@ -32,7 +32,7 @@ export class WebGlController extends PrismController {
 
     // create planar resource
     let id = prism.createPlanarEGLResourceId(1024, 1024);
-    let quad = prism.createQuadNode(id);
+    let quad = this.quad = prism.createQuadNode(id);
     let [w, h] = prism.getSize();
     quad.setLocalScale([w, h, 1]);
     quad.setLocalPosition([-w / 2, -h / 2, 0]);

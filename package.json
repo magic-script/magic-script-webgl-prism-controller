@@ -1,6 +1,6 @@
 {
   "name": "magic-script-webgl-prism-controller",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Prism controller containing a webgl enabled quad",
   "module": "webgl-prism-controller.js",
   "files": [
