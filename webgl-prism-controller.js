@@ -25,6 +25,9 @@ gl.getParameter = pname => {
 let cb;
 globalThis.requestAnimationFrame = fn => { cb = fn; };
 
+export let frameCost = 0;
+export let frameCount = 0;
+
 export class WebGlController extends PrismController {
   onAttachPrism () {
     let prism = this.getPrism();
@@ -57,7 +60,10 @@ export class WebGlController extends PrismController {
       gl.clear(gl.COLOR_BUFFER_BIT);
       let fn = this.cb;
       this.cb = null;
-      fn(Date.now() - this.start);
+      const now = Date.now();
+      fn(now - this.start);
+      frameCost += Date.now() - now;
+      frameCount++;
       egl.swapBuffers(this.surface);
     }
     return true;
