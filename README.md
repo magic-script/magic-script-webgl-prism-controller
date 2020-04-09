@@ -14,10 +14,6 @@ Create a normal MagicScript LandScape app and use this PrismController on your p
 import { LandscapeApp } from 'lumin';
 import { WebGlController } from 'magic-script-webgl-prism-controller';
 
-import {
-  BoxBufferGeometry, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, TextureLoader, WebGLRenderer
-} from 'three';
-
 export class App extends LandscapeApp {
   onAppStart () {
     let prism = this.requestNewPrism([0.5, 0.5, 0.02]);
