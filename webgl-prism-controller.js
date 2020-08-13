@@ -72,8 +72,9 @@ let canvas = {
   __proto__: DomNode,
   getContext (type) {
     if (type !== 'webgl') return {};
-    gl.canvas = canvas;
-    return gl;
+    const context = Object.create(gl)
+    context.canvas = canvas;
+    return context;
   },
   clientWidth: width,
   clientHeight: height,
