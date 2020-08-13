@@ -1,26 +1,8 @@
 import { PrismController } from 'lumin';
-import egl from 'egl';
-import gl from 'gl';
-import png from 'png';
-import jpeg from 'jpeg';
-
-// gl.getParameter is broken in 0.96, let's hard-code some answers.
-let overrides = {
-  [gl.DEPTH_BITS]: 16,
-  [gl.MAX_TEXTURE_SIZE]: 2048,
-  [gl.MAX_CUBE_MAP_TEXTURE_SIZE]: 512,
-  [gl.MAX_RENDERBUFFER_SIZE]: 2048,
-  [gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS]: 8,
-  [gl.MAX_TEXTURE_IMAGE_UNITS]: 8,
-  [gl.MAX_VERTEX_ATTRIBS]: 10,
-  [gl.MAX_VERTEX_UNIFORM_VECTORS]: 128,
-  [gl.MAX_FRAGMENT_UNIFORM_VECTORS]: 32,
-  [gl.MAX_VARYING_VECTORS]: 6
-};
-let originalGetParameter = gl.getParameter;
-gl.getParameter = pname => {
-  return overrides[pname] || originalGetParameter(pname);
-};
+import * as egl from 'egl';
+import * as gl from 'gl';
+import * as png from 'png';
+import * as jpeg from 'jpeg';
 
 let cb;
 globalThis.requestAnimationFrame = fn => { cb = fn; };
